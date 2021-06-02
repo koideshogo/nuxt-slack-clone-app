@@ -1,27 +1,29 @@
 <template>
-  <div class="container from-green-800">
-    <div>
-      <Logo />
-      <h1 class="title bg-green-300">
-        nuxt-slack-clone-app
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="container">
+    <div class="chats-container flex">
+      <!-- 画像 -->
+      <div class="inline-flex ml-5 mt-16">
+        <div class="relative shadow-xl mx-auto h-20 w-20 -my-12 boder-white rounded-full overflow-hidden border-4">
+          <img class="object-cover w-full h-full" src="../assets/img/icon.jpg" />
+        </div>
+      </div>
+      <!-- テキスト -->
+      <div class="text-blue-800  message-container mt-9 ml-5">
+        <div class="user-name text-blue-800 text-sm font-extrabold">難波のおっさん</div>
+        <div class="message">ええ天気やな（晴れ）</div>
+      </div>
+    </div>
+        <div class="chats-container flex">
+      <!-- 画像 -->
+      <div class="inline-flex ml-5 mt-16">
+        <div class="relative shadow-xl mx-auto h-20 w-20 -my-12 boder-white rounded-full overflow-hidden border-4">
+          <img class="object-cover w-full h-full" src="../assets/img/icon.jpg" />
+        </div>
+      </div>
+      <!-- テキスト -->
+      <div class="text-blue-800  message-container mt-9 ml-5">
+        <div class="user-name text-blue-800 text-sm font-extrabold">難波のおっさん</div>
+        <div class="message">ええ天気やな（晴れ）</div>
       </div>
     </div>
   </div>
@@ -30,49 +32,3 @@
 <script>
 export default {}
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
