@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container from-green-800">
     <div>
       <Logo />
-      <h1 class="title">
+      <h1 class="title bg-green-300">
         nuxt-slack-clone-app
       </h1>
       <div class="links">
