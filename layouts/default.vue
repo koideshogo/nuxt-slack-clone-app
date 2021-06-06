@@ -7,6 +7,7 @@
     <nav v-for="channel in channels" :key="channel.id">
       <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
     </nav>
+    <p v-if="isAuthenticated" @click="logout" class="w-full">ログアウト</p>
   </div>
 
   <div class="hero-content w-full overflow-auto">
@@ -16,8 +17,8 @@
 </template>
 
 <script>
-import {db} from '~/plugins/firebase.js'
-
+import {db, firebase} from '~/plugins/firebase.js'
+import {mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -25,20 +26,41 @@ export default {
     }
   },
   mounted() {
-    // db.collection('channels').get()
-    //   .then((querySnapshot) => {
-    //     querySnapshot.forEach((item) => {
-    //       this.channels.push(item.doc())
-    //     })
-    //       console.log(this.channels)
-    // })
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.setUser(user)
+        db.collection('profiles').doc(user.uid).set({
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        })
+      }
+    })
     db.collection('channels').get()
       .then((querySnapShot) => {
         querySnapShot.forEach(item => {
           this.channels.push({id: item.id, ...item.data()})
-        });
-        // console.log(this.channels)
+        })
       })
+  },
+  methods: {
+    ...mapActions(['setUser']),
+    logout() {
+      firebase.auth().signOut()
+        .then(() =>  {
+          this.setUser(null)
+          window.alert('ログアウトしました')
+        })
+        .catch((e) => {
+          window.alert('ログアウトに失敗しました')
+          console.log(e)
+        })
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated
+    }
   }
 
 }
